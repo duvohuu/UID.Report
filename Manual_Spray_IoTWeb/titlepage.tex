@@ -1,0 +1,101 @@
+\begin{titlepage}
+    \begin{tikzpicture}[remember picture, overlay]
+
+        % ================== NỀN XANH ==================
+        \fill[CoverBlue]
+        (current page.north west) rectangle (current page.south east);
+
+        % ================== DẢI TRẮNG MỎNG ==================
+        \fill[white]
+        ($(current page.north east)+(-2.2cm,0)$)
+        rectangle
+        ($(current page.south east)+(-1.8cm,0)$);
+
+        % ================== DẢI VÀNG (NỬA CHIỀU CAO) ==================
+        \fill[yellow!85!black]
+        ($(current page.north east)+(-1.8cm,-8cm)$)
+        rectangle
+        (current page.south east);
+
+        % ================== LOGO ==================
+        \node[
+        anchor=north west,
+        xshift=1.5cm,
+        yshift=-1.5cm
+        ] at (current page.north west)
+        {\includegraphics[width=2.6cm]{pictures/UID_logo.png}};
+
+        % ================== WEBSITE ==================
+        \node[
+        anchor=west,
+        text=white,
+        font=\large
+        ] at ($(current page.north west)+(6cm,-2.5cm)$)
+        {spraymachine-fe.vercel.app};
+
+        % ================== PREPARED BY ==================
+        \node[
+        anchor=west,
+        text=yellow!85!black,
+        font=\bfseries\small
+        ] at ($(current page.west)+(1.5cm,-2cm)$)
+        {PREPARED BY};
+
+        \node[
+        anchor=west,
+        text=white,
+        font=\small
+        ] at ($(current page.west)+(1.5cm,-3cm)$)
+        {VO HUU DU};
+
+        \node[
+        anchor=west,
+        text=white,
+        font=\small
+        ] at ($(current page.west)+(1.5cm,-3.6cm)$)
+        {du.vohuudu@gmail.com};
+
+        % ================== ĐƯỜNG KẺ ==================
+        \draw[
+        white,
+        line width=0.8pt
+        ]
+        ($(current page.west)+(1.5cm,-5cm)$)
+        --
+        ($(current page.east)+(-2.5cm,-5cm)$);
+
+        % ================== TIÊU ĐỀ CHÍNH ==================
+        \node[
+        anchor=north west,
+        text=white,
+        font=\fontsize{40}{45}\selectfont\bfseries,
+        text width=17cm,
+        align=flush right
+        ] at ($(current page.west)+(1cm,-7cm)$)
+        {\textpdfrender{
+            TextRenderingMode=FillStroke,
+            LineWidth=2pt,
+        }{IOT WEB PLATFORM}};
+
+        \node[
+        anchor=north west,
+        text=yellow!85!black,
+        font=\fontsize{30}{35}\selectfont\bfseries,
+        text width=17cm,
+        align=flush right
+        ] at ($(current page.west)+(1cm,-10cm)$)
+        {\textpdfrender{
+            TextRenderingMode=FillStroke,
+            LineWidth=2pt,
+        }{USER MANUAL}};
+
+        % ================== FOOTER ==================
+        \node[
+        anchor=north west,
+        text=white,
+        font=\small
+        ] at ($(current page.west)+(1.5cm,-13.5cm)$)
+        {FIRST EDITION, JANUARY 2026};
+
+    \end{tikzpicture}
+\end{titlepage}
