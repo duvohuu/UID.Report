@@ -1,1 +1,71 @@
 \section{LƯU Ý}
+    \hspace*{0.6cm}Hệ thống \textbf{UID IoT Web Server} hiện đang ở giai đoạn thử nghiệm và triển khai ban đầu. Do đó, người dùng cần lưu ý một số vấn đề kỹ thuật và hạn chế về tính năng trong quá trình sử dụng để có trải nghiệm tốt nhất.
+    
+    \subsection{Vấn đề về hiệu suất và thời gian phản hồi}
+        \hspace*{0.6cm}Hệ thống hiện tại được triển khai trên nền tảng \textbf{Platform as a Service (PaaS)} thay vì sử dụng Domain Registrar chuyên dụng. Điều này mang lại một số ưu điểm về chi phí và tính linh hoạt trong giai đoạn thử nghiệm, tuy nhiên cũng tồn tại một số hạn chế về hiệu suất mà người dùng cần lưu ý:
+        
+        \subsubsection{Thời gian tải trang lần đầu}
+            \hspace*{0.6cm}Khi truy cập vào hệ thống lần đầu tiên hoặc sau một thời gian dài không sử dụng, người dùng có thể nhận thấy thời gian tải trang khá chậm (có thể từ 30 giây đến 1 phút). Nguyên nhân là do:
+            \begin{itemize}
+                \item Server của PaaS tự động chuyển sang chế độ "ngủ" (sleep mode) khi không có hoạt động trong một khoảng thời gian nhất định để tiết kiệm tài nguyên.
+                \item Khi có request mới, server cần thời gian để "thức dậy" (wake up) và khởi động lại các dịch vụ cần thiết.
+                \item Quá trình này bao gồm việc tải lại các thư viện, kết nối cơ sở dữ liệu và khởi tạo các service backend.
+            \end{itemize}
+            
+           \textbf{Khuyến nghị:} Người dùng nên kiên nhẫn chờ đợi trong lần truy cập đầu tiên. Sau khi hệ thống đã được "đánh thức", các thao tác tiếp theo sẽ diễn ra mượt mà và nhanh chóng hơn.
+        
+        \subsubsection{Thời gian timeout phiên làm việc}
+            \hspace*{0.6cm}Do giới hạn của nền tảng PaaS, hệ thống có cơ chế timeout phiên làm việc (session timeout) khá ngắn:
+            \begin{itemize}
+                \item Nếu người dùng không thực hiện bất kỳ thao tác nào trong vòng \textbf{15 phút}, phiên làm việc sẽ tự động hết hạn.
+                \item Server sẽ tự động chuyển về chế độ ngủ để tiết kiệm tài nguyên.
+                \item Khi người dùng tiếp tục thao tác sau 15 phút không hoạt động, họ sẽ cần phải:
+                \begin{enumerate}
+                    \item Tải lại trang web (reload/refresh)
+                    \item Đăng nhập lại vào hệ thống
+                    \item Chờ thời gian để server thức dậy (tương tự như lần truy cập đầu tiên)
+                \end{enumerate}
+            \end{itemize}
+            
+            \textbf{Khuyến nghị:} 
+            \begin{itemize}
+                \item Người dùng nên thực hiện các thao tác định kỳ (ví dụ: refresh dữ liệu, chuyển giữa các trang) để duy trì phiên làm việc.
+                \item Nếu cần rời khỏi máy tính trong thời gian dài, nên đăng xuất khỏi hệ thống để tránh mất dữ liệu chưa lưu.
+                \item Khi quay lại làm việc, hãy kiểm tra xem phiên làm việc có còn hoạt động không trước khi thực hiện các thao tác quan trọng.
+            \end{itemize}
+    
+    \subsection{Các tính năng đang trong quá trình phát triển}
+        \hspace*{0.6cm}Hệ thống \textbf{UID IoT Web Server} hiện tại tập trung vào các chức năng cốt lõi để giám sát và phân tích dữ liệu máy móc. Tuy nhiên, một số tính năng bổ sung đã được thiết kế giao diện nhưng chưa được triển khai đầy đủ do đang trong giai đoạn thu thập phản hồi từ người dùng và đánh giá nhu cầu thực tế.
+        
+        \subsubsection{Hệ thống thông báo}
+            \hspace*{0.6cm}Biểu tượng chuông thông báo đã xuất hiện trên thanh header của giao diện, tuy nhiên chức năng này hiện chưa hoàn thiện:
+            \begin{itemize}
+                \item \textbf{Trạng thái hiện tại:} Icon chuông chỉ mang tính chất gợi ý giao diện, chưa kết nối với hệ thống backend để nhận và hiển thị thông báo thực tế.
+                \item \textbf{Tính năng dự kiến:} Trong tương lai, hệ thống thông báo sẽ cung cấp:
+                \begin{itemize}
+                    \item Thông báo real-time khi có sự cố máy móc (mất kết nối, hoạt động bất thường)
+                    \item Cảnh báo tích hợp với các cảnh báo trên HMI
+                \end{itemize}
+                \item \textbf{Lý do chưa triển khai:} Không cần thiết vì đã có HMI, có thể triển khai nếu có nhu cầu. 
+            \end{itemize}
+        
+        \subsubsection{Chức năng tìm kiếm}
+            \hspace*{0.6cm}Thanh tìm kiếm hiện đã có mặt trên giao diện nhưng chưa hoạt động đầy đủ:
+            \begin{itemize}
+                \item \textbf{Trạng thái hiện tại:} Thanh tìm kiếm có thể nhập văn bản nhưng chưa thực hiện được việc tìm kiếm và hiển thị kết quả.
+                \item \textbf{Tính năng dự kiến:} Tìm kiếm máy móc theo tên, ID, loại máy
+                \item \textbf{Lý do chưa triển khai:} Do số lượng máy móc hiện tại chỉ có 1, việc tìm kiếm là không cần thiết.
+            \end{itemize}
+        
+        \subsubsection{Chuyển đổi ngôn ngữ trong Setting}
+            \hspace*{0.6cm}Sẽ thêm nếu người dùng có nhu cầu.
+    
+    \subsection{Khuyến nghị chung cho người dùng}
+        \begin{enumerate}
+            \item \textbf{Về kết nối mạng:} Đảm bảo có kết nối Internet ổn định khi sử dụng hệ thống. Kết nối không ổn định có thể gây mất dữ liệu hoặc hiển thị thông tin không chính xác.
+            
+            \item \textbf{Về trình duyệt:} Khuyến nghị sử dụng các trình duyệt web phiên bản mới nhất (Chrome, Firefox, Edge) để đảm bảo tương thích tốt nhất. Tránh sử dụng các trình duyệt cũ hoặc không còn được hỗ trợ.
+            
+            \item \textbf{Về dữ liệu:} Mặc dù hệ thống có cơ chế lưu trữ và backup tự động, người dùng nên thường xuyên kiểm tra và ghi chú lại các thông tin quan trọng.
+        
+        \end{enumerate}
