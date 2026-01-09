@@ -1,18 +1,154 @@
 \section{HUỚNG DẪN SỬ DỤNG}
-    Đầu tiên, người dùng cần truy cập vào địa chỉ web của hệ thống \textbf{UID IoT Web Server} thông qua trình duyệt web như Chrome, Firefox, Safari hoặc Edge. Địa chỉ web ở đây là \url{https://spraymachine-fe.vercel.app}
+    \hspace*{0.6cm}Đầu tiên, người dùng cần truy cập vào địa chỉ web của hệ thống \textbf{UID IoT Web Server} thông qua trình duyệt web như Chrome, Firefox, Safari hoặc Edge. Địa chỉ web ở đây là \url{https://spraymachine-fe.vercel.app}
     \subsection{Giao diện chính}
         Sau khi truy cập vào địa chỉ web, người dùng sẽ thấy giao diện chính của hệ thống như hình \ref{fig:main_interface} dưới đây. Tại giao diện này, người dùng có thể lựa chọn đăng nhập vào hệ thống, tài khoản đăng nhập sẽ đuợc cấp bởi quản trị viên hệ thống.
         \begin{figure}[H]
             \centering
-            \includegraphics[width=1\textwidth]{pictures/section2/main.png}
+            \includegraphics[width=1\textwidth]{pictures/section2/s02_p01_Main.png}
             \caption{Giao diện chính của hệ thống trước khi đăng nhập}
             \label{fig:main_interface}
         \end{figure}
         Giao diện đăng nhập hiện ra, nguời dùng sẽ nhập gmail và password đuợc cấp để tiến hành đăng nhập vào hệ thống.
         \begin{figure}[H]
             \centering
-            \includegraphics[width=0.5\textwidth]{pictures/section2/login.png}
+            \includegraphics[width=0.5\textwidth]{pictures/section2/s02_p02_Login.png}
             \caption{Giao diện đăng nhập hệ thống}
             \label{fig:login_interface}
         \end{figure}
+    \subsection{Giao diện sau khi đăng nhập}
+        \hspace*{0.6cm}Sau khi đăng nhập thành công, người dùng sẽ thấy giao diện chính của hệ thống như sau:
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=1\textwidth]{pictures/section2/s02_p03_Home.png}
+            \caption{Giao diện chính của hệ thống sau khi đăng nhập}
+            \label{fig:home_interface}
+        \end{figure}
+        Giao diện này gồm 3 phần chính:
+        \begin{itemize}
+            \item Phần đầu trang (Header): Hiển thị tên hệ thống, thanh tìm kiếm, chuông thông báo, tên và avatar nguời dùng.
+            \item Phần thanh điều hướng (Sidebar): Chứa các mục chức năng chính của hệ thống như Tổng quan, Cài đặt hệ thống, v.v.
+            \item Phần thân trang (Body): Hiển thị nội dung chi tiết của mục chức năng được chọn từ thanh điều hướng.
+        \end{itemize}
+        \subsubsection{Phần đầu trang (Header)}
+            \hspace*{0.6cm}Phần đầu trang bao gồm các thành phần sau:
+            \begin{itemize}
+                \item Tên hệ thống: "UID IoT Web Server"
+                \item Thanh tìm kiếm: Cho phép người dùng tìm kiếm nhanh các máy móc hoặc thông tin trong hệ thống.
+                \item Chuông thông báo: Hiển thị các thông báo mới từ hệ thống.
+                \item Tên và avatar người dùng: Hiển thị tên và hình đại diện của người dùng hiện tại, khi nhấp vào có thể truy cập đến hộp thoại nguời dùng gồm những chức năng:
+                \begin{itemize}
+                    \item Trạng thái nguời dùng
+                    \item Cập nhật avatar nguời dùng
+                    \item Đổi mật khẩu
+                    \item Đăng xuất khỏi hệ thống
+                \end{itemize}
+                \begin{figure}[H]
+                    \centering
+                    \includegraphics[width=0.5\textwidth]{pictures/section2/s02_p04_UserDialog.png}
+                    \caption{Hộp thoại nguời dùng}
+                \end{figure}
+                \begin{figure}[H]
+                    \centering
+                    \includegraphics[width=0.5\textwidth]{pictures/section2/s02_p05_ChangePasswordDialog.png}
+                    \caption{Hộp thoại đổi mật khẩu}
+                \end{figure}
+            \end{itemize}
+        \subsubsection{Phần thanh điều hướng (Sidebar)}
+            \hspace*{0.6cm}Phần thanh điều hướng nằm ở bên trái giao diện, bao gồm các mục chức năng chính của hệ thống:
+            \begin{itemize}
+                \item \textbf{Tổng quan (Overview)}: Hiển thị tổng quan về trạng thái hệ thống, số lượng máy móc, cảnh báo, v.v.
+                \item \textbf{Cài đặt hệ thống (System Settings)}: Cho phép người dùng tùy chỉnh giao diện, v.v.
+            \end{itemize}
+        \subsubsection{Phần thân trang (Body)}
+            \hspace*{0.6cm}Phần thân trang sẽ hiển thị nội dung chi tiết của mục chức năng được chọn từ thanh điều hướng.\\[0.4cm]
+            \hspace*{0.6cm}\textbf{Trang tổng quan} bao gồm:
+            \begin{itemize}
+                \item Thanh BreadCrumb: Hiển thị đường dẫn hiện tại trong hệ thống đến trang tổng quan.
+                \begin{figure}[H]
+                    \centering
+                    \includegraphics[width=0.5\textwidth]{pictures/section2/s02_p06_BreadCrumb1.png}
+                    \caption{Thanh BreadCrumb trang tổng quan}
+                \end{figure}
+                \item Tiêu đề: Bao gồm tên trang, logo các đơn vị liên quan, phân quyền nguời dùng và mô tả ngắn về trang.
+                \begin{figure}[H]
+                    \centering
+                    \includegraphics[width=0.75\textwidth]{pictures/section2/s02_p07_OverviewTitle.png}
+                    \caption{Tiêu đề trang tổng quan}
+                \end{figure}
+                \item Các StatsCard: Thống kê nhanh về số lượng máy móc, cảnh báo, v.v.
+                \begin{figure}[H]
+                    \centering
+                    \includegraphics[width=1\textwidth]{pictures/section2/s02_p08_StatsCard.png}
+                    \caption{Các StatsCard}
+                \end{figure}
+                \item Các Card đại diện cho từng máy móc trong hệ thống, hiển thị thông tin sơ bộ của máy móc đó.
+                \begin{figure}[H]
+                    \centering
+                    \includegraphics[width=0.45\textwidth]{pictures/section2/s02_p09_MachineCard.png}
+                    \caption{Các Card máy móc}
+                \end{figure}
+                \hspace*{0.6cm}Thông tin sơ bộ trên Card máy móc gồm:
+                \begin{itemize}
+                    \item Tên máy, ID máy, loại máy, chủ sở hữu.
+                    \item Phân quyền hiện tại.
+                    \item Trạng thái kết nối, trạng thái hoạt động.
+                    \item Lần cập nhật gần nhất.
+                \end{itemize}
+            \end{itemize}
+            \hspace*{0.6cm}\textbf{Trang cài đặt} bao gồm:
+            \begin{figure}[H]
+                \centering
+                \includegraphics[width=1\textwidth]{pictures/section2/s02_p10_SettingPage.png}
+                \caption{Giao diện trang cài đặt}
+            \end{figure}
+            \begin{itemize}
+                \item Thanh BreadCrumb: Hiển thị đường dẫn hiện tại trong hệ thống đến trang cài đặt.
+                \begin{figure}[H]
+                    \centering
+                    \includegraphics[width=0.5\textwidth]{pictures/section2/s02_p06_BreadCrumb1.png}
+                    \caption{Thanh BreadCrumb trang cài đặt}
+                \end{figure}
+                \item Tiêu đề: Bao gồm tên trang và mô tả ngắn về trang.
+                \begin{figure}[H]
+                    \centering
+                    \includegraphics[width=0.5\textwidth]{pictures/section2/s02_p12_SettingTitle.png}
+                    \caption{Tiêu đề trang cài đặt}
+                \end{figure}
+                \item Các card đại diện cho từng Setting bao gồm: Giao diện (Sáng/Tối), Thông báo (Bật/Tắt), Ngôn ngữ (Tiếng Việt/Tiếng Anh).
+                \begin{figure}[H]
+                    \centering
+                    \includegraphics[width=1\textwidth]{pictures/section2/s02_p13_SettingCard.png}
+                    \caption{Các card cài đặt}
+                \end{figure}
+            \end{itemize}
+    \subsection{Giao diện Dashboard}
+        \hspace*{0.6cm}Người dùng có thể truy cập giao diện Dashboard của từng máy móc bằng cách nhấp vào Card máy móc tương ứng trên trang tổng quan. Ở đây ta có giao diện Dashboard của máy phun sơn. Giao diện Dashboard bao gồm các phần chính sau:
+        \subsubsection{Card thông tin}
+            \hspace*{0.6cm}Phần Card thông tin hiển thị các thông tin cơ bản về máy phun sơn như tên máy, ID máy, loại máy, chủ sở hữu, trạng thái hoạt động và ca làm việc.
+            \begin{figure}[H]
+                \centering
+                \includegraphics[width=0.3\textwidth]{pictures/section2/s02_p14_InforCard.png}
+                \caption{Card thông tin máy phun sơn}
+            \end{figure}
+        \subsection{Biểu đồ dữ liệu}
+            \hspace*{0.6cm}Phần biểu đồ dữ liệu bao gồm \textbf{biểu đồ tròn} thể hiện mối quan hệ giữa thời gian hoạt động và thời gian dừng của máy phun sơn trong ngày và \textbf{biểu đồ cột đôi} thể hiện thời gian hoạt động và thời gian dừng của các ngày trong tuần hiện tại.
+            \begin{figure}[H]
+                \centering
+                \includegraphics[width=1\textwidth]{pictures/section2/s02_p15_PieChart.png}
+                \caption{Biểu đồ tròn thời gian hoạt động và dừng máy phun sơn}
+            \end{figure}
+            \begin{figure}[H]
+                \centering
+                \includegraphics[width=1\textwidth]{pictures/section2/s02_p16_BarChart.png}
+                \caption{Biểu đồ cột đôi thời gian hoạt động và dừng máy phun sơn trong tuần}
+            \end{figure}
+        \subsection{Thống kê dữ liệu}
+            \hspace*{0.6cm}Phần thống kê dữ liệu bao gồm các card tổng hợp lại từ biểu đồ về thời gian hoạt động và thời gian dừng, bên cạnh đó còn có các card biểu thị năng luợng tiêu thụ và hiệu suất hoạt động. Phần thống kê dữ liệu gồm có thống kê dữ liệu trong ngày và thống kê dữ liệu theo tháng (30 ngày gần nhất).
+            \begin{figure}[H]
+                \centering
+                \includegraphics[width=1\textwidth]{pictures/section2/s02_p17_Statistics.png}
+                \caption{Thống kê dữ liệu}
+            \end{figure}    
+            
+                
     
