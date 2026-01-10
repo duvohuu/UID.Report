@@ -1,0 +1,206 @@
+\chapter{CẤU TRÚC HỆ THỐNG} 
+    \section{Kiến trúc tổng thể}
+        \begin{itemize}
+            \item Front-end sử dụng React làm framework chính, Vite làm công cụ build và Material-UI cho UI components.
+            \item Back-end sử dụng Node.js với Express để xây dựng RESTful API và MongoDB để lưu trữ dữ liệu.
+            \item Giao tiếp IoT sử dụng giao thức MQTT để truyền dữ liệu thời gian thực.
+        \end{itemize}
+    \section{Kiến trúc triển khai (Deployment Architecture)}
+        \hspace*{0.6cm}Sử dụng 3-Tier Architecture như sau:
+        \begin{itemize}
+            \item \textbf{Presentation Tier:} Giao diện người dùng (Front-end) được triển khai trên dịch vụ Vercel.
+            \item \textbf{Logic Tier:} Máy chủ ứng dụng (Back-end) được triển khai trên Renbder, xử lý các yêu cầu từ giao diện người dùng và giao tiếp với cơ sở dữ liệu.
+            \item \textbf{Data Tier:} Cơ sở dữ liệu MongoDB được lưu trữ trên dịch vụ MongoDB Atlas.
+        \end{itemize}
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=1\textwidth]{pictures/chapter2/c02_p01_DeploymentArchitecture.png}
+            \caption{Kiến trúc triển khai hệ thống}
+        \end{figure}
+    \section{Kiến trúc phân lớp}
+        \hspace*{0.6cm}Back-end sử dụng kiến trúc phân lớp (Layered Architecture) với 4 tầng chính:
+        \begin{itemize}
+            \item \textbf{Routing Layer:} Định nghĩa API endpoints và map HTTP methods (GET, POST, PUT, DELETE).
+            \item \textbf{Controller Layer:} Xử lý HTTP request/response, validate input data và format JSON response.
+            \item \textbf{Service Layer:} Business logic và data aggregation.
+            \item \textbf{Model Layer:} Data access và database operations
+        \end{itemize}
+        \begin{figure}[H]
+            \centering
+            \begin{tikzpicture}[
+                font=\small,
+                node distance=1cm,
+                box/.style={
+                    draw,
+                    rectangle,
+                    rounded corners,
+                    align=center,
+                    inner sep=6pt,
+                    text width=9.5cm
+                },
+                arrow/.style={->, thick}
+            ]
+
+            \node[box] (client) {
+            \textbf{CLIENT REQUEST}\\
+            \texttt{GET /api/machines}
+            };
+
+            \node[box, below=of client] (routing) {
+            \textbf{LAYER 1: ROUTING}\\
+            -- Định nghĩa endpoints\\
+            -- Map HTTP methods
+            };
+
+            \node[box, below=of routing] (controller) {
+            \textbf{LAYER 2: CONTROLLER}\\
+            -- Xử lý request / response\\
+            -- Validate input\\
+            -- Gọi Service\\
+            -- Format JSON response
+            };
+
+            \node[box, below=of controller] (service) {
+            \textbf{LAYER 3: SERVICE}\\
+            -- Business logic\\
+            -- Role-based filtering\\
+            -- Data transformation\\
+            -- Gọi Model
+            };
+
+            \node[box, below=of service] (model) {
+            \textbf{LAYER 4: MODEL}\\
+            -- Mongoose Schema\\
+            -- Database queries\\
+            };
+
+            \node[box, below=of model] (db) {
+            \textbf{DATABASE}\\
+            MongoDB Atlas
+            };
+
+            \node[box, below=of db] (response) {
+            \textbf{RESPONSE TO CLIENT}\\
+            \texttt{\{ success, count, machines \}}
+            };
+
+            \draw[arrow] (client) -- (routing);
+            \draw[arrow] (routing) -- (controller);
+            \draw[arrow] (controller) -- (service);
+            \draw[arrow] (service) -- (model);
+            \draw[arrow] (model) -- (db);
+            \draw[arrow] (db) -- (response);
+
+            \end{tikzpicture}
+            \caption{Luồng xử lý request theo kiến trúc nhiều lớp của Backend}
+        \end{figure}
+    \section{Mô hình MVC}
+        \hspace*{0.6cm}Mô hình MVC (Model-View-Controller) là một mô hình thiết kế phần mềm được sử dụng phổ biến trong phát triển ứng dụng web. Mô hình này chia ứng dụng thành ba phần: Model (mô hình), View (giao diện) và Controller (bộ điều khiển). Mỗi phần có nhiệm vụ riêng và tương tác với nhau để tạo ra ứng dụng hoàn chỉnh.
+            \begin{figure}[H]
+                \centering
+                \includegraphics[width=0.8\textwidth]{pictures/chapter2/c02_p02_MVC.png}
+                \caption{Mô hình MVC}
+                \label{fig:mvc}
+            \end{figure}
+        Front-end sử dụng mô hình MVC kết hợp Custom Hooks Pattern như sau:
+        \begin{figure}[H]
+            \centering
+            \begin{tikzpicture}[
+                font=\small,
+                node distance=1cm,
+                box/.style={
+                    draw,
+                    rectangle,
+                    rounded corners,
+                    align=center,
+                    inner sep=6pt,
+                    text width=8cm
+                },
+                arrow/.style={->, thick}
+            ]
+
+            % ================= VIEW LAYER =================
+            \node[box] (view) {
+            \textbf{VIEW LAYER (UI)}\\
+            Pages \& Components (React JSX)\\[6pt]
+            };
+
+            % ================= CONTROLLER LAYER =================
+            \node[box, below=of view] (controller) {
+            \textbf{CONTROLLER LAYER (Logic)}\\
+            Custom Hooks (Business Logic)\\[6pt]
+            };
+
+            % ================= MODEL LAYER =================
+            \node[box, below=of controller] (model) {
+            \textbf{MODEL LAYER (Data)}\\
+            API Services \& Global State\\[6pt]
+            };
+
+            % ================= BACKEND =================
+            \node[box, below=of model] (backend) {
+            \textbf{BACKEND API}\\
+            RESTful API + Socket.IO
+            };
+
+            % ================= ARROWS =================
+            \draw[arrow] (view) -- node[right]{Props \& Events} (controller);
+            \draw[arrow] (controller) -- node[right]{API Calls} (model);
+            \draw[arrow] (model) -- node[right]{HTTP / WebSocket} (backend);
+
+            \end{tikzpicture}
+            \caption{Kiến trúc Frontend theo mô hình View--Controller--Model và kết nối Backend}
+        \end{figure}
+    \section{Sơ đồ luồng dữ liệu (Data Flow Diagram)}
+        \begin{figure}[H]
+            \centering
+            \begin{tikzpicture}[
+                font=\small,
+                node distance=1.2cm,
+                box/.style={
+                    draw,
+                    rectangle,
+                    rounded corners,
+                    align=center,
+                    inner sep=6pt,
+                    text width=9.5cm
+                },
+                arrow/.style={->, thick}
+            ]
+
+            % ========== IoT Device ==========
+            \node[box] (iot) {
+            \textbf{IoT DEVICE}\\
+            Spray Machine Physical Hardware\\[4pt]
+            \textbf{Sensors}\\
+            Status (0/1), Power Consumption (kWh)
+            };
+
+            % ========== MQTT Broker ==========
+            \node[box, below=of iot] (broker) {
+            \textbf{MQTT BROKER (HiveMQ)}\\
+            \texttt{broker.hivemq.com:1883}\\[4pt]
+            Message Queue \& Distribution Service
+            };
+
+            % ========== Backend ==========
+            \node[box, below=of broker] (backend) {
+            \textbf{BACKEND SERVER (Node.js + Express)}\\[4pt]
+            MQTT Client $\rightarrow$ Machine Service $\rightarrow$ Spray Machine Service\\
+            $\rightarrow$ Data Processing $\rightarrow$ Database (MongoDB)
+            };
+
+            % ========== Frontend ==========
+            \node[box, below=of backend] (frontend) {
+            \textbf{FRONTEND CLIENT (React + Vite)}\\[4pt]
+            Socket Context $\rightarrow$ Hooks $\rightarrow$ State $\rightarrow$ Charts
+            };
+
+            % ===== Arrows =====
+            \draw[arrow] (iot) -- node[right]{MQTT Publish} (broker);
+            \draw[arrow] (broker) -- node[right]{MQTT Subscribe} (backend);
+            \draw[arrow] (backend) -- node[right, align=center]{WebSocket\\Real-time} (frontend);
+
+            \end{tikzpicture}
+            \caption{Luồng giao tiếp dữ liệu IoT -- Backend -- Frontend của hệ thống}
+        \end{figure}

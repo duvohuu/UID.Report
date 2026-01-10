@@ -1,0 +1,73 @@
+\chapter{FRONT END}
+    \section{Giới thiệu}
+        \begin{itemize}
+            \item Front-end là phần giao diện người dùng của hệ thống, cho phép người dùng tương tác với hệ thống thông qua các thao tác trên giao diện.
+            \item Front-end được xây dựng với tool build là Vite trên nền tảng ReactJS. Các component được xây dựng trên thư viện Material UI, Axios và sử dụng SocketIO để nhận dữ liệu từ WebServer.
+            \item Front-end sẽ gửi các yêu cầu đến WebServer để lấy dữ liệu và hiển thị lên giao diện.
+        \end{itemize}
+    \section{Cài đặt}
+        \begin{itemize}
+            \item Cài đặt NodeJS và NPM trên máy tính của bạn. Bạn có thể tải NodeJS tại địa chỉ: \url{https://nodejs.org/en/download/}
+            \item Cài đặt Vite bằng lệnh sau:
+                \begin{lstlisting}
+    npm create vite@latest
+                \end{lstlisting}
+                Chọn Framework là React và variant là Javascript.
+            \item Chạy ứng dụng bằng lệnh sau:
+                \begin{lstlisting}
+    npm run dev
+                \end{lstlisting}
+            \item Tải các thư viện cần thiết:
+                \begin{lstlisting}
+    npm install
+                \end{lstlisting}
+            \item Mở trình duyệt và truy cập vào địa chỉ: \url{http://localhost:5173/}
+        \end{itemize}
+    \section{Bố cục giao diện}
+        Giao diện có dạng dashboard được phân bố như hình:
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.8\textwidth]{pictures/dashboard.png}
+            \caption{Giao diện dashboard}
+            \label{fig:dashboard}
+        \end{figure}
+    \section{Cấu trúc thư mục}
+        \begin{itemize}
+            \item \textbf{node\_modules}: Thư mục chứa các thư viện được cài đặt bằng NPM.
+            \item \textbf{public}: Thư mục chứa các tệp tĩnh như hình ảnh, biểu tượng, v.v.
+            \item \textbf{src}: Thư mục chứa mã nguồn của ứng dụng.
+                \begin{itemize}
+                    \item \textbf{api}: Thư mục chứa các tệp API của ứng dụng.
+                    \item \textbf{assets}: Thư mục chứa các tệp tài nguyên như hình ảnh, biểu tượng, v.v.
+                    \item \textbf{components}: Thư mục chứa các thành phần giao diện của ứng dụng: Header.jsx, Footer.jsx, Sidebar.jsx.
+                    \item \textbf{hooks}: Thư mục chứa các hook tùy chỉnh của ứng dụng, hiển thị ở phần Main view.
+                    \item \textbf{pages}: Thư mục chứa các trang của ứng dụng.
+                    \item \textbf{router}: Thư mục chứa các tệp định tuyến của ứng dụng.
+                    \item \textbf{services}: Thư mục chứa các tệp dịch vụ của ứng dụng.
+                    \item \textbf{styles}: Thư mục chứa các tệp CSS của ứng dụng.
+                    \item \textbf{App.jsx}: Tệp chính của ứng dụng.
+                    \item \textbf{main.jsx}: Tệp khởi động ứng dụng.
+                    \item \textbf{theme.js}: Tệp chứa định dạng nền cho ứng dụng.
+                \end{itemize}
+        \end{itemize}
+    \section{Cài đặt thư viện}
+        \begin{itemize}
+            \item Thư viện Material UI: Thư viện giao diện người dùng cho React.
+            \begin{lstlisting}
+    npm install @mui/material
+            \end{lstlisting} 
+            \item Thư viện Axios: Thư viện gửi yêu cầu HTTP.
+            \begin{lstlisting}
+    npm install axios
+            \end{lstlisting} 
+            \item Thư viện React Router: Thư viện định tuyến cho React.
+            \begin{lstlisting}
+    npm install react-router-dom
+            \end{lstlisting}
+            \item Thư viện Socket Clint: Thư viện WebSocket cho Front
+            \begin{lstlisting}
+    npm install socket.io-client
+            \end{lstlisting}
+            \item Các thư viện khác cài đặt trong quá trình phát triển.
+        \end{itemize}
+    

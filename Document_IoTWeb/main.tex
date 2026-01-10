@@ -1,0 +1,33 @@
+\documentclass[12pt,a4paper]{report}
+\input{library}
+\addbibresource{references.bib} 
+
+%Header
+\fancyhead{} % clear all header fields
+\fancyhead[L]{
+    \begin{tabular}{rl}
+        \begin{picture}(15, 15)(0,0)
+            \put(-15, -15){\includegraphics[width=12mm, height=12mm]{pictures/UID_logo.png}}
+        \end{picture}
+        \begin{tabular}{l}
+            \textbf{\bf \ttfamily IOT Web Platform}\\
+            \textbf{\bf \ttfamily Document}\\
+        \end{tabular} 	
+    \end{tabular}
+}
+\fancyhead[R]{CHƯƠNG \thechapter}
+% Footer
+\fancyfoot[C]{\thepage} % số trang giữa
+\renewcommand{\headrulewidth}{0.3pt}
+\renewcommand{\footrulewidth}{0.3pt}
+
+\begin{document}
+    \include{titlepage}
+    \tableofcontents  
+    \newpage
+    \include{chapter1}
+    \include{chapter2}
+    \include{chapter3}
+    \include{chapter4}
+    \include{chapter5}
+\end{document}
